@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfDisasterDal : EfRepositoryBase<Disaster,DisasterContext>,IDisasterDal
+    public class EfDisasterTypeDal : EfRepositoryBase<DisasterType, DisasterContext>, IDisasterTypeDal
     {
     }
 }

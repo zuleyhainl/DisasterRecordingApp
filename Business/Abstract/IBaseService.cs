@@ -9,9 +9,10 @@ namespace Business.Abstract
 {
     public interface IBaseService<T> where T : IEntity, new()
     {
-        public void Add(T entity);
-        public void Delete(T entity);
-        public void Update(T entity);
-        public List<T> GetAll();
+        void Add(T entity);
+        void Delete(T entity);
+        void Update(T entity);
+        List<T> GetAll();
+        T GetById(int Id);
     }
 }
