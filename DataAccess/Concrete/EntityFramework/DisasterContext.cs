@@ -13,7 +13,7 @@ namespace DataAccess.Concrete.EntityFramework
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)//hangi veri tabanıyla ilişkili belirtilir
         {
             optionsBuilder.UseSqlServer(@"Server=(LocalDB)\MSSQLLocalDB;Database = DisasterRecording;Integrated Security=true;");
-           // optionsBuilder.UseSqlServer(connection, b => b.MigrationsAssembly("Business"));
+           
         }
         //hangi nesnem hangi tabloya karşılık
         //public DbSet<City> Cities { get; set; }

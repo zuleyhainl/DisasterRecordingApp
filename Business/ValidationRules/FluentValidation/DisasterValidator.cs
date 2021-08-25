@@ -12,7 +12,8 @@ namespace Business.ValidationRules.FluentValidation
     {
         public DisasterValidator()
         {
-            RuleFor(d => d.GlideNumber).MinimumLength(30);
+            RuleFor(d => d.SerialNumber).NotEmpty().WithMessage("Seri Numarası boş bırakılamaz");
+            RuleFor(d => d.GlideNumber).MaximumLength(30);
         }
     }
 }
