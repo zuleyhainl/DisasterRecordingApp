@@ -33,6 +33,15 @@ namespace WebApplication1
 
             services.AddSingleton<IDisasterTypeService, DisasterTypeManager>();//arka planda referans oluþtur
             services.AddSingleton<IDisasterTypeDal, EfDisasterTypeDal>();
+
+            services.AddSingleton<ICityService, CityManager>();//arka planda referans oluþtur
+            services.AddSingleton<ICityDal, EfCityDal>();
+
+            services.AddSingleton<ITownService, TownManager>();//arka planda referans oluþtur
+            services.AddSingleton<ITownDal, EfTownDal>();
+
+            services.AddSingleton<IDistrictService, DistrictManager>();//arka planda referans oluþtur
+            services.AddSingleton<IDistrictDal, EfDistrictDal>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

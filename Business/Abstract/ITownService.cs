@@ -9,5 +9,6 @@ namespace Business.Abstract
 {
     public interface ITownService : IBaseService<Town>
     {
+        List<Town> GetByCityId(int CityId);
     }
 }

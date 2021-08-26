@@ -13,9 +13,9 @@ namespace Entities.Concrete
         public int CityId { get; set; }
         public virtual City City { get; set; }
         public string Name { get; set; }
-        public ICollection<Disaster> Disasters { get; set; }
-        public ICollection<Village> Villages { get; set; }
-        public ICollection<Neighborhood> Neighborhoods { get; set; }
+        //public ICollection<Disaster> Disasters { get; set; }
+        //public ICollection<Village> Villages { get; set; }
+        public ICollection<District> Districts { get; set; }
 
     }
 }

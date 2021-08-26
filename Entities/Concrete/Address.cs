@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-    public class City : IEntity
+    public class Address : IEntity
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        //public ICollection<Disaster> Disasters { get; set; }
-        public ICollection<Town> Towns { get; set; }
-
+        //public int NeighborhoodId { get; set; }
+        //public virtual Neighborhood Neighborhood { get; set; }
     }
 }

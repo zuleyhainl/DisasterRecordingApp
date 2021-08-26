@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace Business.Abstract
 {
-    public interface IVillageService : IBaseService<Village>
+    public interface IDistrictService : IBaseService<District>
     {
+        List<District> GetAllByTownId(int townId);
     }
 }

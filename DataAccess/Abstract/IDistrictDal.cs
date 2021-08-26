@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface IVillageDal : IRepository<Village>
+    public interface IDistrictDal : IRepository<District>
     {
     }
 }

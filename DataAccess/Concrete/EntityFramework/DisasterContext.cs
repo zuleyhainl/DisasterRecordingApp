@@ -16,12 +16,12 @@ namespace DataAccess.Concrete.EntityFramework
            
         }
         //hangi nesnem hangi tabloya karşılık
-        //public DbSet<City> Cities { get; set; }
+        public DbSet<City> Cities { get; set; }
         public DbSet<Disaster> Disasters { get; set; }
         public DbSet<DisasterImg> DisasterImgs { get; set; }
         public DbSet<DisasterType> DisasterTypes { get; set; }
-        //public DbSet<Neighborhood> Neighborhoods { get; set; }
-        //public DbSet<Town> Towns { get; set; }
-        //public DbSet<Village> Villages { get; set; }
+        public DbSet<Neighborhood> Neighborhoods { get; set; }
+        public DbSet<Town> Towns { get; set; }
+        public DbSet<District> Districts { get; set; }
     }
 }

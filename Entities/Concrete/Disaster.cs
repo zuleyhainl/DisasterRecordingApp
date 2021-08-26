@@ -22,7 +22,7 @@ namespace Entities.Concrete
         //public int TownId { get; set; }
         //public virtual Town Town { get; set; }
         //public int NeighborhoodId { get; set; }
-        //public virtual Neighborhood Neighborhood { get; set; }
+        public virtual Neighborhood Neighborhood { get; set; }
         //public int VillageId { get; set; }
         //public virtual Village Village { get; set; }
         public string PlaceDescription { get; set; }
