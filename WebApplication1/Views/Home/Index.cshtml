@@ -9,6 +9,7 @@
 
     $(function () {
 
+
         $('#DrpCity').change(function () {
 
             var Id = $('#DrpCity').val();
@@ -137,14 +138,16 @@
                 <span>Başlangıç Tarihi</span>
             </div>
             <div class="col-md-2">
-                @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control" })
+                @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StartDate, "Zorunlu Alan", new { @class = "text-danger" })
             </div>
 
             <div class="col-md-2">
                 <span>Bitiş Tarihi</span>
             </div>
             <div class="col-md-2">
-                @Html.TextBoxFor(model => model.EndDate, new { @class = "form-control" })
+                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EndDate, "Zorunlu Alan", new { @class = "text-danger" })
             </div>
 
             <div class="col-md-2">
@@ -152,6 +155,7 @@
             </div>
             <div class="col-md-2">
                 @Html.TextBoxFor(model => model.NumberOfDays, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.NumberOfDays, "Zorunlu Alan", new { @class = "error" })
             </div>
 
         </div>
@@ -297,5 +301,10 @@
         </div>
 
     }
+    @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+    {
+        <a href="/Home/BirAction" class="btn btn-block btn-primary">Afet Listele</a>
+    }
 
-</div>
+
+    </div>

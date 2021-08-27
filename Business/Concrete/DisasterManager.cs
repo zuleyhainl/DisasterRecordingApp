@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,11 @@ namespace Business.Concrete
         public Disaster GetById(int Id)
         {
             return _disasterDal.Get(d => d.Id == Id);
+        }
+
+        public List<DisasterDto> GetDisasterDetails()
+        {
+            return _disasterDal.GetDisasterDetails();
         }
 
         public void Update(Disaster entity)

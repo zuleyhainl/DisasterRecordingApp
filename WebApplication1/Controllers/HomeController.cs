@@ -32,16 +32,11 @@ namespace WebApplication1.Controllers
             _neighborhoodService = neighborhoodService;
             _disasterService =  disasterService;
         }
-        //DisasterContext db = new DisasterContext();
-        //ViewClass class1 = new ViewClass();
+        
         [HttpGet]
         public IActionResult Index()
         {
-            //class1.Cities = new SelectList(_cityService.GetAll(),"Id","Name");
-            //class1.Towns = new SelectList(_townService.GetAll(), "Id", "Name");
-            //class1.Districts = new SelectList(_districtService.GetAll(), "Id", "Name");
-            //class1.Neighborhoods = new SelectList(_neighborhoodService.GetAll(), "Id", "Name");
-            //class1.DisasterTypes = new SelectList(_disasterTypeService.GetAll(),"Id","TypeName");
+           
 
             List<DisasterType> disasterTypesList = _disasterTypeService.GetAll().ToList();
             ViewBag.disasterTypes = new SelectList(disasterTypesList, "Id", "TypeName");
@@ -63,17 +58,7 @@ namespace WebApplication1.Controllers
 
             return View();
         }
-        //public void GetTownsByCityId(int cityId)
-        //{
-        //    List<SelectListItem> valueTown = (from x in _townService.GetByCityId(cityId)
-        //                                      select new SelectListItem
-        //                                      {
-        //                                          Text = x.Name,
-        //                                          Value = x.Id.ToString()
 
-        //                                      }).ToList();
-        //    ViewBag.vlt = valueTown;
-        //}
 
         public JsonResult GetTownsByCityId(int cityId)
         {
@@ -113,40 +98,17 @@ namespace WebApplication1.Controllers
             Console.WriteLine(disaster.NeighborhoodId); 
             _disasterService.Add(disaster);
             return RedirectToAction("Index");
+        }
+        public ActionResult BirAction()
+        {
+            return RedirectToAction("GetDisasterList", "Disasters");
 
         }
 
 
 
 
-        //[HttpGet("getall")]
-        //public IActionResult GetAll()
-        //{
-        //    var result = _disasterTypeService.GetAll();
-        //    return View();
-        //}
 
-        //[HttpGet]
-        //public IActionResult AddDisasterType()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public IActionResult Index(DisasterType disasterType)
-        //{
-        //    _disasterTypeService.Add(disasterType);
-        //    return RedirectToAction("Index");
-
-        //}
-
-        //[HttpGet("gettypenames")]
-        //public IActionResult Index()
-        //{
-        //    var result = _disasterTyepService.GetAll();
-        //    return View(result);
-
-        //}
 
 
 

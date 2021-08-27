@@ -17,26 +17,13 @@ namespace WebApplication1.Controllers
         {
             _disasterService = disasterService;
         }
-
-        /*[HttpGet("getall")]
-        public IActionResult GetAll()
-        {
-            var result = _disasterService.GetAll();
-            return Ok(result);
-        }*/
-
         [HttpGet]
-        public IActionResult Add()
+        public IActionResult GetDisasterList()
         {
-
-            return View();
+            var disasterValues = _disasterService.GetDisasterDetails();
+            return View(disasterValues);
         }
 
-        [HttpPost("adddisaster")]
-        public IActionResult Add(Disaster disaster)
-        {
-            _disasterService.Add(disaster);
-            return Ok();
-        }
+
     }
 }

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(DisasterContext))]
-    [Migration("20210827111835_MigrationDisaster")]
+    [Migration("20210827140135_MigrationDisaster")]
     partial class MigrationDisaster
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

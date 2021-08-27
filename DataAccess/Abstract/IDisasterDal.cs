@@ -1,4 +1,5 @@
 ﻿using Entities.Concrete;
+using Entities.DTOs;
 using Infrastructure.DataAccess;
 using System;
 using System.Collections.Generic;
@@ -10,5 +11,6 @@ namespace DataAccess.Abstract
 {
     public interface IDisasterDal : IRepository<Disaster>
     {
+        List<DisasterDto> GetDisasterDetails();//buraya özgü
     }
 }
