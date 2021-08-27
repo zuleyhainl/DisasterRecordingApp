@@ -9,5 +9,6 @@ namespace Business.Abstract
 {
     public interface INeighborhoodService : IBaseService<Neighborhood>
     {
+        List<Neighborhood> GetAllByDistrictId(int disId);
     }
 }

@@ -1,5 +1,5 @@
 ﻿@using Entities.Concrete
-@model WebApplication1.Models.Class
+@model Entities.Concrete.Disaster
 
 @{
     ViewData["Title"] = "Home Page";
@@ -65,8 +65,35 @@
                 }
             })
         });
+        $('#DrpDistrict').change(function () {
+
+            var Id = $('#DrpDistrict').val();
+            $.ajax({
+                url: '/Home/GetNeighborhoodsByDistrictId',
+
+                data: { disId: Id },
+
+                type: "POST",
+
+                dataType: "Json",
+
+                success: function (data) {
+
+                    console.log(data);
+
+                    $('#NeighborhoodId').empty();
+
+                    for (var i = 0; i < data.length; i++) {
+
+                        $('#NeighborhoodId').append("<option value='" + data[i].value + "'>" + data[i].text + "</Option>");
+
+                    }
+                }
+            })
+        });
     });
 
+    
 
 </script>
 
@@ -80,224 +107,195 @@
             </div>
         </div>
     </div>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        <div class="row d-flex mt-4">
 
-
-
-    <div class="row d-flex mt-4">
-
-        <div class="col-md-2 d-flex">
-            <span>Seri No</span>
-        </div>
-
-        <div class="col-md-2">
-            <form class="form-group p-0 mh-100 mw-100" method="post">
-                <input type="text" placeholder="Seri No" name="SerialNumber" class="form-control" />
-            </form>
-        </div>
-
-        <div class="col-md-2 align-items-start">
-            <span>GLIDE No</span>
-        </div>
-
-        <div class="col-md-2 align-items-start">
-            <form class="form-group" method="post">
-                <input type="text" placeholder="Glide No" name="GlideNumber" class="form-control" />
-            </form>
-        </div>
-
-    </div>
-
-
-
-    <div class="row d-flex mt-4">
-        <div class="col-md-2">
-            <span>Başlangıç Tarihi</span>
-        </div>
-        <div class="col-md-2">
-            <form class="form-group" method="post">
-                <input type="text" placeholder="" name="StartDate" class="form-control" />
-            </form>
-        </div>
-        <div class="col-md-2">
-            <span>Bitiş Tarihi</span>
-        </div>
-        <div class="col-md-2">
-            <form class="form-group" method="post">
-                <input type="text" placeholder="" name="EndDate" class="form-control" />
-            </form>
-        </div>
-        <div class="col-md-2">
-            <span>Süre(Gün)</span>
-        </div>
-        <div class="col-md-2">
-            <form class="form-group" method="post">
-                <input type="text" placeholder="" name="NumberOfDays" class="form-control" />
-            </form>
-        </div>
-
-    </div>
-
-    <div class="row d-flex mt-4">
-        <div class="col-md-2">
-            <span>Afet Türü</span>
-        </div>
-        <div class="col-md-2">
-            @using (Html.BeginForm("Index", "Home", FormMethod.Get))
-                {
-                    
-            <div class="form-group">
-                @*@Html.Label("Afet Türü")*@
-                @*@Html.DropDownListFor(x => , (List<SelectListItem>)ViewBag.vlc, new { @class = "form-control" })*@
-                @Html.DropDownList("DrpDisaster", Model.DisasterTypes, "Afet Seçin", new { @class = "form-control" })
+            <div class="col-md-2 d-flex">
+                <span>Seri No</span>
             </div>
 
-            }
-        </div>
-
-        <div class="col-md-2">
-            <span>İl</span>
-        </div>
-        <div class="col-md-2">
-            @using (Html.BeginForm("Index", "Home", FormMethod.Get))
-            {
-            <div class="form-group">
-                @*<a href="/Home/GetTownsByCityId/@Model"> @Html.DropDownListFor(x => x.Id, (List<SelectListItem>)ViewBag.vlct, "İl Seçiniz", new { @class = "form-control" })</a>*@
-               
-                @Html.DropDownList("DrpCity", Model.Cities,"Şehir Seçin", new { @class = "form-control" })
-
+            <div class="col-md-2">
+                @Html.TextBoxFor(model => model.SerialNumber, new { @class = "form-control" })
             </div>
 
-            }
-
-        </div>
-        <div class="col-md-2">
-            <span>İlçe</span>
-        </div>
-        <div class="col-md-2">
-            @using (Html.BeginForm("Index", "Home", FormMethod.Get))
-            {
-            <div class="form-group">
-                @*@Html.Label("Afet Türü")*@
-                @*@Html.DropDownListFor(x => , (List<SelectListItem>)ViewBag.vlt, "İlçe Seçiniz", new { @class = "form-control" })*@
-                @Html.DropDownList("DrpTown", Model.Towns, "İlçe Seçin", new { @class = "form-control" })
+            <div class="col-md-2 align-items-start">
+                <span>GLIDE No</span>
             </div>
 
-            }
-        </div>
-    </div>
-
-
-    <div class="row d-flex mt-4">
-        <div class="col-md-2">
-            <span>Semt</span>
-        </div>
-        <div class="col-md-2">
-            @using (Html.BeginForm("Index", "Home", FormMethod.Get))
-            {
-            <div class="form-group">
-                @*@Html.DropDownListFor(x => x.Id, (List<SelectListItem>)ViewBag.vld, "Semt Seçiniz",new { @class = "form-control" })*@
-                @Html.DropDownList("DrpDistrict", Model.Districts, "Semt Seçin", new { @class = "form-control" })
+            <div class="col-md-2 align-items-start">
+                @Html.TextBoxFor(model => model.GlideNumber, new { @class = "form-control" })
             </div>
 
-            }
         </div>
-        <div class="col-md-2">
-            <span>Mahalle</span>
-        </div>
-        <div class="col-md-2">
-            <form class="form-group" method="post">
-                <input type="text" placeholder="" class="form-control" />
-            </form>
-        </div>
-        <div class="col-md-2">
-            <span>Belde/Mevki</span>
-        </div>
-        <div class="col-md-2">
-            <form class="form-group" method="post">
-                <input type="text" placeholder="" class="form-control" />
-            </form>
-        </div>
-    </div>
 
-    <div class="row d-flex mt-4">
-        <div class="col-md-2">
-            <span>Neden</span>
-        </div>
-        <div class="col-md-2">
-            <form class="form-group" method="post">
-                <input type="text" placeholder="" class="form-control" />
-            </form>
-        </div>
-        <div class="col-md-2">
-            <span>Enlem</span>
-        </div>
-        <div class="col-md-2">
-            <form class="form-group" method="post">
-                <input type="text" placeholder="" name="Latitude" class="form-control" />
-            </form>
-        </div>
-        <div class="col-md-2">
-            <span>Boylam</span>
-        </div>
-        <div class="col-md-2">
-            <form class="form-group" method="post">
-                <input type="text" placeholder="" name="Longitude" class="form-control" />
-            </form>
-        </div>
-    </div>
 
-    <div class="row d-flex mt-4">
-        <div class="col-md-2">
-            <span>Neden Açıklama</span>
-        </div>
-        <div class="col-md-8">
-            <form class="form-group" method="post">
-                <input type="text" placeholder="" class="form-control" />
-            </form>
-        </div>
-    </div>
 
-    <div class="row d-flex mt-4">
-        <div class="col-md-2">
-            <span>Etkilediği Alanlar</span>
-        </div>
-        <div class="col-md-8">
-            <form class="form-group" method="post">
-                <input type="text" placeholder="" class="form-control" />
-            </form>
-        </div>
-    </div>
+        <div class="row d-flex mt-4">
 
-    <div class="row d-flex mt-4">
-        <div class="col-md-2">
-            <span>Kaynak</span>
-        </div>
-        <div class="col-md-8">
-            <form class="form-group" method="post">
-                <input type="text" placeholder="" class="form-control" />
-            </form>
-        </div>
-    </div>
+            <div class="col-md-2">
+                <span>Başlangıç Tarihi</span>
+            </div>
+            <div class="col-md-2">
+                @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control" })
+            </div>
 
-    @*<div class="row d-flex mt-4">
+            <div class="col-md-2">
+                <span>Bitiş Tarihi</span>
+            </div>
+            <div class="col-md-2">
+                @Html.TextBoxFor(model => model.EndDate, new { @class = "form-control" })
+            </div>
+
+            <div class="col-md-2">
+                <span>Süre(Gün)</span>
+            </div>
+            <div class="col-md-2">
+                @Html.TextBoxFor(model => model.NumberOfDays, new { @class = "form-control" })
+            </div>
+
+        </div>
+
+
+        <div class="row d-flex mt-4">
+
+            <div class="col-md-2">
+                <span>Afet Türü</span>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    @Html.DropDownListFor(model => model.TypeId, ViewBag.disasterTypes as SelectList, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <span>İl</span>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    @Html.DropDownList("DrpCity", ViewBag.cities, "Şehir Seçin", new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <span>İlçe</span>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    @Html.DropDownList("DrpTown", ViewBag.towns, "İlçe Seçin", new { @class = "form-control" })
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row d-flex mt-4">
+
+            <div class="col-md-2">
+                <span>Semt</span>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    @Html.DropDownList("DrpDistrict", ViewBag.districts, "Semt Seçin", new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <span>Mahalle</span>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    @Html.DropDownListFor(model => model.NeighborhoodId, ViewBag.neighborhoods as SelectList, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <span>Belde/Mevki</span>
+            </div>
+            <div class="col-md-2">
+                @Html.TextBoxFor(model => model.PlaceDescription, new { @class = "form-control" })
+            </div>
+
+        </div>
+
+        <div class="row d-flex mt-4">
+
+            <div class="col-md-2">
+                <span>Neden</span>
+            </div>
+            <div class="col-md-2">
+                @Html.TextBoxFor(model => model.Cause, new { @class = "form-control" })
+            </div>
+
+            <div class="col-md-2">
+                <span>Enlem</span>
+            </div>
+            <div class="col-md-2">
+                @Html.TextBoxFor(model => model.Latitude, new { @class = "form-control" })
+            </div>
+
+            <div class="col-md-2">
+                <span>Boylam</span>
+            </div>
+            <div class="col-md-2">
+                @Html.TextBoxFor(model => model.Longitude, new { @class = "form-control" })
+            </div>
+
+        </div>
+
+
+        <div class="row d-flex mt-4">
+
+            <div class="col-md-2">
+                <span>Neden Açıklama</span>
+            </div>
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.CauseDescription, new { @class = "form-control" })
+            </div>
+
+        </div>
+
+        <div class="row d-flex mt-4">
+
+            <div class="col-md-2">
+                <span>Etkilediği Alanlar</span>
+            </div>
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.AffectedAreas, new { @class = "form-control" })
+            </div>
+
+        </div>
+
+        <div class="row d-flex mt-4">
+
+            <div class="col-md-2">
+                <span>Kaynak</span>
+            </div>
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.Source, new { @class = "form-control" })
+            </div>
+
+        </div>
+
+        <div class="row d-flex mt-4">
             <div class="col-md-2">
                 <span>ResimId</span>
             </div>
             <div class="col-md-8">
-                <form class="form-group" method="post">
-                    <input type="text" placeholder="" name="DisasterImgId" class="form-control"/>
-                </form>
+                @*<form class="form-group" method="post">
+                        <input type="text" placeholder="" name="DisasterImgId" class="form-control" />
+                    </form>*@
+                @*@Html.TextBoxFor(model => model.DisasterImgId, new { @class = "form-control" })*@
             </div>
-        </div>*@
-<div class="row d-flex">
-    @*<form class="form-group" method="post">
+        </div>
 
-        </form>*@
-    <div class="col-md d-flex justify-content-end">
-        <button class="btn btn-primary">Kaydet</button>
-    </div>
-    
-</div>
-   
+
+        <div class="row mt-4">
+            <div class="col-md">
+                <input type="submit" value="Kaydet" class="btn btn-block btn-primary" />
+            </div>
+        </div>
+
+    }
 
 </div>

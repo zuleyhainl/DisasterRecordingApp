@@ -10,7 +10,7 @@ namespace Entities.Concrete
     public class DisasterImg : IEntity
     {
         public int Id { get; set; }
-        public int DisasterId { get; set; }
+   
         public string ImgPath { get; set; }
         public ICollection<Disaster> Disasters { get; set; }
     }

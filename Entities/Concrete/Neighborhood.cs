@@ -13,7 +13,8 @@ namespace Entities.Concrete
         public int DistrictId { get; set; }
         public virtual District District { get; set; }
         public string Name { get; set; }
-        //public ICollection<Address> Addresses { get; set; }
+        
         public ICollection<Disaster> Disasters { get; set; }
+
     }
 }

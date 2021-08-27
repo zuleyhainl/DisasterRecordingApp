@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccess.Migrations
 {
-    public partial class MigrationDisasterProject : Migration
+    public partial class MigrationDisaster : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,20 +18,6 @@ namespace DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cities", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DisasterImgs",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DisasterId = table.Column<int>(type: "int", nullable: false),
-                    ImgPath = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DisasterImgs", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -119,25 +105,18 @@ namespace DataAccess.Migrations
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     NumberOfDays = table.Column<int>(type: "int", nullable: false),
                     TypeId = table.Column<int>(type: "int", nullable: false),
-                    NeighborhoodId = table.Column<int>(type: "int", nullable: true),
+                    NeighborhoodId = table.Column<int>(type: "int", nullable: false),
                     PlaceDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Latitude = table.Column<decimal>(type: "decimal(11,8)", nullable: false),
-                    Longitude = table.Column<decimal>(type: "decimal(10,8)", nullable: false),
+                    Latitude = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Longitude = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Cause = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CauseDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AffectedAreas = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Source = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DisasterImgId = table.Column<int>(type: "int", nullable: false)
+                    Source = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Disasters", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Disasters_DisasterImgs_DisasterImgId",
-                        column: x => x.DisasterImgId,
-                        principalTable: "DisasterImgs",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Disasters_DisasterTypes_TypeId",
                         column: x => x.TypeId,
@@ -149,13 +128,8 @@ namespace DataAccess.Migrations
                         column: x => x.NeighborhoodId,
                         principalTable: "Neighborhoods",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Disasters_DisasterImgId",
-                table: "Disasters",
-                column: "DisasterImgId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Disasters_NeighborhoodId",
@@ -187,9 +161,6 @@ namespace DataAccess.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Disasters");
-
-            migrationBuilder.DropTable(
-                name: "DisasterImgs");
 
             migrationBuilder.DropTable(
                 name: "DisasterTypes");

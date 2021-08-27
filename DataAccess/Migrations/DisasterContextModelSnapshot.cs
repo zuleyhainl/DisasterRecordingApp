@@ -50,9 +50,6 @@ namespace DataAccess.Migrations
                     b.Property<string>("CauseDescription")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("DisasterImgId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
@@ -65,7 +62,7 @@ namespace DataAccess.Migrations
                     b.Property<decimal>("Longitude")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("NeighborhoodId")
+                    b.Property<int>("NeighborhoodId")
                         .HasColumnType("int");
 
                     b.Property<int>("NumberOfDays")
@@ -88,31 +85,11 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DisasterImgId");
-
                     b.HasIndex("NeighborhoodId");
 
                     b.HasIndex("TypeId");
 
                     b.ToTable("Disasters");
-                });
-
-            modelBuilder.Entity("Entities.Concrete.DisasterImg", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("DisasterId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ImgPath")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DisasterImgs");
                 });
 
             modelBuilder.Entity("Entities.Concrete.DisasterType", b =>
@@ -192,23 +169,17 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.Concrete.Disaster", b =>
                 {
-                    b.HasOne("Entities.Concrete.DisasterImg", "DisasterImg")
-                        .WithMany("Disasters")
-                        .HasForeignKey("DisasterImgId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Entities.Concrete.Neighborhood", "Neighborhood")
                         .WithMany("Disasters")
-                        .HasForeignKey("NeighborhoodId");
+                        .HasForeignKey("NeighborhoodId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Entities.Concrete.DisasterType", "Type")
                         .WithMany("Disasters")
                         .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("DisasterImg");
 
                     b.Navigation("Neighborhood");
 
@@ -251,11 +222,6 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Entities.Concrete.City", b =>
                 {
                     b.Navigation("Towns");
-                });
-
-            modelBuilder.Entity("Entities.Concrete.DisasterImg", b =>
-                {
-                    b.Navigation("Disasters");
                 });
 
             modelBuilder.Entity("Entities.Concrete.DisasterType", b =>

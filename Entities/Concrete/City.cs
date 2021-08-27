@@ -11,8 +11,9 @@ namespace Entities.Concrete
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        //public ICollection<Disaster> Disasters { get; set; }
+    
         public ICollection<Town> Towns { get; set; }
+    
 
     }
 }

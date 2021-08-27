@@ -14,5 +14,6 @@ namespace Entities.Concrete
         public virtual Town Town { get; set; }
         public string Name { get; set; }
         public ICollection<Neighborhood> Neighborhoods { get; set; }
+       
     }
 }

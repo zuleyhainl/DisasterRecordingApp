@@ -42,6 +42,9 @@ namespace WebApplication1
 
             services.AddSingleton<IDistrictService, DistrictManager>();//arka planda referans oluþtur
             services.AddSingleton<IDistrictDal, EfDistrictDal>();
+
+            services.AddSingleton<INeighborhoodService, NeighborhoodManager>();//arka planda referans oluþtur
+            services.AddSingleton<INeighborhoodDal, EfNeighborhoodDal>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -20,25 +20,48 @@ namespace WebApplication1.Controllers
         ICityService _cityService;
         ITownService _townService;
         IDistrictService _districtService;
+        INeighborhoodService _neighborhoodService;
+        IDisasterService _disasterService;
 
-        public HomeController(IDisasterTypeService disasterTypeService, ICityService cityService, ITownService townService, IDistrictService districtService)
+        public HomeController(IDisasterTypeService disasterTypeService, ICityService cityService, ITownService townService, IDistrictService districtService, INeighborhoodService neighborhoodService, IDisasterService disasterService)
         {
             _disasterTypeService = disasterTypeService;
             _cityService = cityService;
             _townService = townService;
             _districtService = districtService;
+            _neighborhoodService = neighborhoodService;
+            _disasterService =  disasterService;
         }
-        DisasterContext db = new DisasterContext();
-        Class class1 = new Class();
+        //DisasterContext db = new DisasterContext();
+        //ViewClass class1 = new ViewClass();
         [HttpGet]
         public IActionResult Index()
         {
-            class1.Cities = new SelectList(db.Cities,"Id","Name");
-            class1.Towns = new SelectList(db.Towns, "Id", "Name");
-            class1.Districts = new SelectList(db.Districts, "Id", "Name");
-            class1.DisasterTypes = new SelectList(db.DisasterTypes,"Id","TypeName");
+            //class1.Cities = new SelectList(_cityService.GetAll(),"Id","Name");
+            //class1.Towns = new SelectList(_townService.GetAll(), "Id", "Name");
+            //class1.Districts = new SelectList(_districtService.GetAll(), "Id", "Name");
+            //class1.Neighborhoods = new SelectList(_neighborhoodService.GetAll(), "Id", "Name");
+            //class1.DisasterTypes = new SelectList(_disasterTypeService.GetAll(),"Id","TypeName");
 
-            return View(class1);
+            List<DisasterType> disasterTypesList = _disasterTypeService.GetAll().ToList();
+            ViewBag.disasterTypes = new SelectList(disasterTypesList, "Id", "TypeName");
+
+            List<City> cityList = _cityService.GetAll().ToList();
+            ViewBag.cities = new SelectList(cityList, "Id", "Name");
+
+            List<Town> townList = _townService.GetAll().ToList();
+            ViewBag.towns = new SelectList(townList, "Id", "Name");
+
+            List<District> districtList = _districtService.GetAll().ToList();
+            ViewBag.districts = new SelectList(districtList, "Id", "Name");
+
+            List<Neighborhood> neighborhoodList = _neighborhoodService.GetAll().ToList();
+            ViewBag.neighborhoods = new SelectList(neighborhoodList, "Id", "Name");
+
+
+
+
+            return View();
         }
         //public void GetTownsByCityId(int cityId)
         //{
@@ -73,6 +96,25 @@ namespace WebApplication1.Controllers
                          }).ToList();
             return Json(districts);
         }
+        public JsonResult GetNeighborhoodsByDistrictId(int disId)
+        {
+            var neighborhoods = (from x in _neighborhoodService.GetAllByDistrictId(disId)
+                             select new
+                             {
+                                 Text = x.Name,
+                                 Value = x.Id.ToString()
+                             }).ToList();
+            return Json(neighborhoods);
+        }
+
+        [HttpPost]
+        public IActionResult Index(Disaster disaster)
+        {
+            Console.WriteLine(disaster.NeighborhoodId); 
+            _disasterService.Add(disaster);
+            return RedirectToAction("Index");
+
+        }
 
 
 
@@ -90,13 +132,13 @@ namespace WebApplication1.Controllers
         //    return View();
         //}
 
-        [HttpPost]
-        public IActionResult Index(DisasterType disasterType)
-        {
-            _disasterTypeService.Add(disasterType);
-            return RedirectToAction("Index");
+        //[HttpPost]
+        //public IActionResult Index(DisasterType disasterType)
+        //{
+        //    _disasterTypeService.Add(disasterType);
+        //    return RedirectToAction("Index");
 
-        }
+        //}
 
         //[HttpGet("gettypenames")]
         //public IActionResult Index()

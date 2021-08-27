@@ -12,16 +12,18 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)//hangi veri tabanıyla ilişkili belirtilir
         {
-            optionsBuilder.UseSqlServer(@"Server=(LocalDB)\MSSQLLocalDB;Database = DisasterRecording;Integrated Security=true;");
+            optionsBuilder.UseSqlServer(@"Server=(LocalDB)\MSSQLLocalDB;Database = DisasterRecording2;Integrated Security=true;");
            
         }
         //hangi nesnem hangi tabloya karşılık
-        public DbSet<City> Cities { get; set; }
+        
         public DbSet<Disaster> Disasters { get; set; }
-        public DbSet<DisasterImg> DisasterImgs { get; set; }
+        //public DbSet<DisasterImg> DisasterImgs { get; set; }
         public DbSet<DisasterType> DisasterTypes { get; set; }
-        public DbSet<Neighborhood> Neighborhoods { get; set; }
+        public DbSet<City> Cities { get; set; }
         public DbSet<Town> Towns { get; set; }
         public DbSet<District> Districts { get; set; }
+        public DbSet<Neighborhood> Neighborhoods { get; set; }
+        
     }
 }
