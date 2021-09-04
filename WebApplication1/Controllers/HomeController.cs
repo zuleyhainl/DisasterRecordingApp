@@ -1,15 +1,9 @@
 ﻿using Business.Abstract;
-using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
-using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
@@ -36,8 +30,6 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-           
-
             List<DisasterType> disasterTypesList = _disasterTypeService.GetAll().ToList();
             ViewBag.disasterTypes = new SelectList(disasterTypesList, "Id", "TypeName");
 
@@ -52,9 +44,6 @@ namespace WebApplication1.Controllers
 
             List<Neighborhood> neighborhoodList = _neighborhoodService.GetAll().ToList();
             ViewBag.neighborhoods = new SelectList(neighborhoodList, "Id", "Name");
-
-
-
 
             return View();
         }
@@ -95,22 +84,13 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult Index(Disaster disaster)
         {
-            Console.WriteLine(disaster.NeighborhoodId); 
             _disasterService.Add(disaster);
             return RedirectToAction("Index");
         }
         public ActionResult BirAction()
         {
             return RedirectToAction("GetDisasterList", "Disasters");
-
         }
-
-
-
-
-
-
-
 
     }
 }

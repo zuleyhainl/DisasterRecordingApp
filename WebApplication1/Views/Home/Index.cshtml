@@ -99,12 +99,12 @@
 </script>
 
 
-<div class="container-fluid bg-secondary">
+<div class="container" style="background-color: #B8E0F5">
 
-    <div class="row bg-dark d-flex ">
+    <div class="row d-flex" style="background-color: #232331 ">
         <div class="col-4">
             <div class="text-light m-3">
-                <span class="font-weight-bold " style="font-size:1.4em;font-family:Arial, Helvetica, sans-serif">Afet Giriş</span>
+                <span class="font-weight-bold " style="font-size:1.4em;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Afet Giriş</span>
             </div>
         </div>
     </div>
@@ -117,7 +117,8 @@
             </div>
 
             <div class="col-md-2">
-                @Html.TextBoxFor(model => model.SerialNumber, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.SerialNumber, "Seri No", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SerialNumber, "Zorunlu Alan", new { @class = "text-danger" })
             </div>
 
             <div class="col-md-2 align-items-start">
@@ -125,7 +126,8 @@
             </div>
 
             <div class="col-md-2 align-items-start">
-                @Html.TextBoxFor(model => model.GlideNumber, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.GlideNumber,"Glide No", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.GlideNumber, "Zorunlu Alan", new { @class = "text-danger" })
             </div>
 
         </div>
@@ -147,15 +149,15 @@
             </div>
             <div class="col-md-2">
                 @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EndDate, "Zorunlu Alan", new { @class = "text-danger" })
+                @*@Html.ValidationMessageFor(model => model.EndDate, "Zorunlu Alan", new { @class = "text-danger" })*@
             </div>
 
             <div class="col-md-2">
                 <span>Süre(Gün)</span>
             </div>
             <div class="col-md-2">
-                @Html.TextBoxFor(model => model.NumberOfDays, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.NumberOfDays, "Zorunlu Alan", new { @class = "error" })
+                @Html.TextBoxFor(model => model.NumberOfDays,"Süre Girin", new { @class = "form-control" })
+                
             </div>
 
         </div>
@@ -168,7 +170,8 @@
             </div>
             <div class="col-md-2">
                 <div class="form-group">
-                    @Html.DropDownListFor(model => model.TypeId, ViewBag.disasterTypes as SelectList, new { @class = "form-control" })
+                    @Html.DropDownListFor(model => model.TypeId, ViewBag.disasterTypes as SelectList,"Afet Seçin", new { @class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.TypeId, "Zorunlu Alan", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -209,7 +212,7 @@
             </div>
             <div class="col-md-2">
                 <div class="form-group">
-                    @Html.DropDownListFor(model => model.NeighborhoodId, ViewBag.neighborhoods as SelectList, new { @class = "form-control" })
+                    @Html.DropDownListFor(model => model.NeighborhoodId, ViewBag.neighborhoods as SelectList,"Mahalle Seçin", new { @class = "form-control" })
                 </div>
             </div>
 
@@ -217,7 +220,7 @@
                 <span>Belde/Mevki</span>
             </div>
             <div class="col-md-2">
-                @Html.TextBoxFor(model => model.PlaceDescription, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.PlaceDescription, "Belde/Mevki",new { @class = "form-control" })
             </div>
 
         </div>
@@ -228,21 +231,21 @@
                 <span>Neden</span>
             </div>
             <div class="col-md-2">
-                @Html.TextBoxFor(model => model.Cause, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.Cause, "Neden",new { @class = "form-control" })
             </div>
 
             <div class="col-md-2">
                 <span>Enlem</span>
             </div>
             <div class="col-md-2">
-                @Html.TextBoxFor(model => model.Latitude, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.Latitude,"Enlem", new { @class = "form-control" })
             </div>
 
             <div class="col-md-2">
                 <span>Boylam</span>
             </div>
             <div class="col-md-2">
-                @Html.TextBoxFor(model => model.Longitude, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.Longitude,"Boylam", new { @class = "form-control" })
             </div>
 
         </div>

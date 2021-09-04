@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class DisastersController : Controller
     {
         IDisasterService _disasterService;
@@ -22,6 +20,12 @@ namespace WebApplication1.Controllers
         {
             var disasterValues = _disasterService.GetDisasterDetails();
             return View(disasterValues);
+        }
+        public IActionResult DeleteDisaster(int Id)
+        {
+            var disaster = _disasterService.GetById(Id);
+            _disasterService.Delete(disaster);
+            return RedirectToAction("GetDisasterList");
         }
 
 

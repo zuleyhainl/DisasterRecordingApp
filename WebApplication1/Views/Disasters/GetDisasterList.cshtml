@@ -1,50 +1,65 @@
-﻿
-@using Entities.DTOs
+﻿@using Entities.DTOs
 @model List<DisasterDto>
 @{
     ViewData["Title"] = "Disaster List";
 }
-<table class="table table-bordered">
-    <tr>
-        <td>Seri No</td>
-        <td>Glide No</td>
-        <td>Başlangıç Tarihi</td>
-        <td>Bitiş Tarihi</td>
-        <td>Süre</td>
-        <td>Tür</td>
-        <td>İl</td>
-        <td>İlçe</td>
-        <td>Semt</td>
-        <td>Mahalle</td>
-        <td>Belde</td>
-        <td>Enlem</td>
-        <td>Boylam</td>
-        <td>Sebep</td>
-        <td>Açıklama</td>
-        <td>Etkilenen Alanlar</td>
-        <td>Kaynak</td>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.SerialNumber</td>
-            <td>@item.GlideNumber</td>
-            <td>@item.StartDate</td>
-            <td>@item.EndDate</td>
-            <td>@item.NumberOfDays</td>
-            <td>@item.TypeName</td>
-            <td>@item.CityName</td>
-            <td>@item.TownName</td>
-            <td>@item.DistrictName</td>
-            <td>@item.NeighborhoodName</td>
-            <td>@item.Latitude</td>
-            <td>@item.Longitude</td>
-            <td>@item.Cause</td>
-            <td>@item.CauseDescription</td>
-            <td>@item.AffectedAreas</td>
-            <td>@item.Source</td>
+<div class="container-fluid">
+    
+        <table class="table table-responsive-md" style="font-size:0.8em;">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="auto">Seri No</th>
+                    <th scope="auto">Glide No</th>
+                    <th scope="auto">Başlangıç Tarihi</th>
+                    <th scope="auto">Bitiş Tarihi</th>
+                    <th scope="auto">Süre</th>
+                    <th scope="auto">Tür</th>
+                    <th scope="auto">İl</th>
+                    <th scope="auto">İlçe</th>
+                    <th scope="auto">Semt</th>
+                    <th scope="auto">Mahalle</th>
+                    <th scope="auto">Belde</th>
+                    <th scope="auto">Enlem</th>
+                    <th scope="auto">Boylam</th>
+                    <th scope="auto">Sebep</th>
+                    <th scope="auto">Açıklama</th>
+                    <th scope="auto">Etkilenen Alanlar</th>
+                    <th scope="auto">Kaynak</th>
+                    <th scope="auto">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
 
-        </tr>
+                @foreach (var item in Model)
+                 {
+                <tr>
+                    <td>@item.SerialNumber</td>
+                    <td class="text-nowrap">@item.GlideNumber</td>
+                    <td>@item.StartDate</td>
+                    <td>@item.EndDate</td>
+                    <td>@item.NumberOfDays</td>
+                    <td>@item.TypeName</td>
+                    <td>@item.CityName</td>
+                    <td>@item.TownName</td>
+                    <td>@item.DistrictName</td>
+                    <td>@item.NeighborhoodName</td>
+                    <td>@item.PlaceDescription</td>
+                    <td>@item.Latitude.</td>
+                    <td>@item.Longitude</td>
+                    <td>@item.Cause</td>
+                    <td>@item.CauseDescription</td>
+                    <td>@item.AffectedAreas</td>
+                    <td>@item.Source</td>
+                    <td><a href="/Disasters/DeleteDisaster/@item.DisasterId" class="btn btn-primary">Sil</a></td>
+                </tr>
 
-    }
-</table>
+                 }
+                
+
+            </tbody>
+
+        </table>
+    
+
+    </div>
+

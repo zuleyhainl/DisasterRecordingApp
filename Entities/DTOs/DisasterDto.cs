@@ -8,6 +8,7 @@ namespace Entities.DTOs
 {
     public class DisasterDto
     {
+        public int DisasterId { get; set; }
         public string SerialNumber { get; set; }
         public string GlideNumber { get; set; }
         public DateTime StartDate { get; set; }
