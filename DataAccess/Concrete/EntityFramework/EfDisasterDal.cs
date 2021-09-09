@@ -5,8 +5,7 @@ using Infrastructure.DataAccess.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace DataAccess.Concrete.EntityFramework
 {
@@ -16,8 +15,7 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (DisasterContext context = new DisasterContext())
             {
-                //var result2 = from c in context.Disasters
-                //              join n in context.Neighborhoods on c.NeighborhoodId equals n.Id
+
 
                 var result = from d in context.Disasters
                              join tn in context.DisasterTypes on d.TypeId equals tn.Id
@@ -30,10 +28,10 @@ namespace DataAccess.Concrete.EntityFramework
                                                       NeighborhoodName = nn.Name, PlaceDescription = d.PlaceDescription, Latitude = d.Latitude,
                                                       Longitude = d.Longitude, Cause = d.Cause, CauseDescription = d.CauseDescription, AffectedAreas = d.AffectedAreas, Source = d.Source};
                 return result.ToList();
-
-                
-                              
+            
             }
         }
+
     }
 }
+

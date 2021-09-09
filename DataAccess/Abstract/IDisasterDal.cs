@@ -11,6 +11,6 @@ namespace DataAccess.Abstract
 {
     public interface IDisasterDal : IRepository<Disaster>
     {
-        List<DisasterDto> GetDisasterDetails();//buraya özgü
+        List<DisasterDto> GetDisasterDetails();
     }
 }

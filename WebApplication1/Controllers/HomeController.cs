@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace WebApplication1.Controllers
+namespace WebApplication.Controllers
 {
 
     public class HomeController : Controller
@@ -48,7 +48,6 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-
         public JsonResult GetTownsByCityId(int cityId)
         {
             var towns = (from x in _townService.GetByCityId(cityId)
@@ -81,16 +80,18 @@ namespace WebApplication1.Controllers
             return Json(neighborhoods);
         }
 
-        [HttpPost]
-        public IActionResult Index(Disaster disaster)
+        [HttpPost]//afet ekle butonuna basınca çalışır
+        public IActionResult AddDisaster(Disaster disaster)
         {
             _disasterService.Add(disaster);
             return RedirectToAction("Index");
         }
-        public ActionResult BirAction()
+        //afet listele butonuna basınca çalışır
+        public IActionResult BirAction()
         {
             return RedirectToAction("GetDisasterList", "Disasters");
         }
+
 
     }
 }

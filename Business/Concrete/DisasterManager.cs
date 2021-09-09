@@ -30,6 +30,7 @@ namespace Business.Concrete
 
         public List<Disaster> GetAll()
         {
+
             return _disasterDal.GetAll();
         }
 

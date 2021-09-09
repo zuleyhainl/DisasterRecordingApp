@@ -2,7 +2,7 @@
 @model Entities.Concrete.Disaster
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Update Disaster Page";
 }
 
 <script>
@@ -93,10 +93,10 @@
             })
         });
     });
+ </script>
 
-    
 
-</script>
+
 
 
 <div class="container" style="background-color: #B8E0F5">
@@ -108,7 +108,7 @@
             </div>
         </div>
     </div>
-    @using (Html.BeginForm("AddDisaster", "Home", FormMethod.Post))
+    @using (Html.BeginForm("UpdateDisaster", "Disasters", FormMethod.Post))
     {
         <div class="row d-flex mt-4">
 
@@ -117,7 +117,7 @@
             </div>
 
             <div class="col-md-2">
-                @Html.TextBoxFor(model => model.SerialNumber, "Seri No", new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.SerialNumber, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.SerialNumber, "Zorunlu Alan", new { @class = "text-danger" })
             </div>
 
@@ -126,7 +126,7 @@
             </div>
 
             <div class="col-md-2 align-items-start">
-                @Html.TextBoxFor(model => model.GlideNumber,"Glide No", new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.GlideNumber, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.GlideNumber, "Zorunlu Alan", new { @class = "text-danger" })
             </div>
 
@@ -155,8 +155,8 @@
                 <span>Süre(Gün)</span>
             </div>
             <div class="col-md-2">
-                @Html.TextBoxFor(model => model.NumberOfDays,"Süre Girin", new { @class = "form-control" })
-                
+                @Html.TextBoxFor(model => model.NumberOfDays, new { @class = "form-control" })
+
             </div>
 
         </div>
@@ -169,7 +169,7 @@
             </div>
             <div class="col-md-2">
                 <div class="form-group">
-                    @Html.DropDownListFor(model => model.TypeId, ViewBag.disasterTypes as SelectList,"Afet Seçin", new { @class = "form-control"})
+                    @Html.DropDownListFor(model => model.TypeId, ViewBag.disasterTypes as SelectList, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.TypeId, "Zorunlu Alan", new { @class = "text-danger" })
                 </div>
             </div>
@@ -177,9 +177,10 @@
                 <span>İl</span>
             </div>
             <div class="col-md-2">
-                <div class="form-group">
-                    @Html.DropDownList("DrpCity", ViewBag.cities, "Şehir Seçin", new { @class = "form-control" })
+                <div class="form-group">  
+                    @Html.DropDownList("DrpCity", ViewBag.cities,"İl Seçin", new { @class = "form-control" })
                 </div>
+
             </div>
             <div class="col-md-2">
                 <span>İlçe</span>
@@ -206,7 +207,7 @@
             </div>
             <div class="col-md-2">
                 <div class="form-group">
-                    @Html.DropDownListFor(model => model.NeighborhoodId, ViewBag.neighborhoods as SelectList,"Mahalle Seçin", new { @class = "form-control" })
+                    @Html.DropDownListFor(model => model.NeighborhoodId, ViewBag.neighborhoods as SelectList, "Mahalle Seçin", new { @class = "form-control" })
                 </div>
             </div>
 
@@ -214,7 +215,7 @@
                 <span>Belde/Mevki</span>
             </div>
             <div class="col-md-2">
-                @Html.TextBoxFor(model => model.PlaceDescription, "Belde/Mevki",new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.PlaceDescription, new { @class = "form-control" })
             </div>
 
         </div>
@@ -225,21 +226,21 @@
                 <span>Neden</span>
             </div>
             <div class="col-md-2">
-                @Html.TextBoxFor(model => model.Cause, "Neden",new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.Cause,  new { @class = "form-control" })
             </div>
 
             <div class="col-md-2">
                 <span>Enlem</span>
             </div>
             <div class="col-md-2">
-                @Html.TextBoxFor(model => model.Latitude,"Enlem", new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.Latitude,  new { @class = "form-control" })
             </div>
 
             <div class="col-md-2">
                 <span>Boylam</span>
             </div>
             <div class="col-md-2">
-                @Html.TextBoxFor(model => model.Longitude,"Boylam", new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.Longitude, new { @class = "form-control" })
             </div>
 
         </div>
@@ -278,29 +279,13 @@
 
         </div>
 
-        <!--<div class="row d-flex mt-4">
-            <div class="col-md-2">
-                <span>ResimId</span>
-            </div>
-            <div class="col-md-8">-->
-                @*<form class="form-group" method="post">
-                        <input type="text" placeholder="" name="DisasterImgId" class="form-control" />
-                    </form>*@
-                @*@Html.TextBoxFor(model => model.DisasterImgId, new { @class = "form-control" })*@
-            <!--</div>
-        </div>-->
-
 
         <div class="row mt-4">
             <div class="col-md">
-                <input type="submit" value="Kaydet" class="btn btn-block btn-primary" />
+                <input type="submit" value="Güncelle" class="btn btn-block btn-primary" />
             </div>
         </div>
 
-    }
+     }
 
-      <a href="/Home/BirAction" class="btn btn-block btn-primary">Afet Listele</a>
-    
-
-
-    </div>
+</div>
